@@ -1,0 +1,10 @@
+[Unit]
+Description=Failure notifications for %i using telegram-notify
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStartPre=/bin/bash -c "echo -e \"$(systemctl status --full %i)\" > /var/log/%i-failure.txt"
+ExecStartPost=/bin/rm /var/log/%i-failure.txt
+ExecStart=/usr/local/bin/telegram-notify --error --text "Service '%i' failed @ %H" --document /var/log/%i-failure.txt
