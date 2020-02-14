@@ -9,6 +9,7 @@ command -v curl >/dev/null 2>&1 || { echo "This script requires cURL to run, ins
 
 SPATH=$(dirname $0)
 REMOTE_URL=https://raw.githubusercontent.com/jacklul/telegram-notify/master
+REMOTE_URL_ORIGINAL=https://raw.githubusercontent.com/NicolasBernaerts/debian-Scripts/master/telegram
 
 if [ -f "$SPATH/telegram-notify" ] && [ -f "$SPATH/telegram-notify.conf" ]; then
 	cp -v $SPATH/telegram-notify /usr/local/bin/telegram-notify && \
@@ -22,6 +23,8 @@ if [ -f "$SPATH/telegram-notify" ] && [ -f "$SPATH/telegram-notify.conf" ]; then
 		cp -v $SPATH/telegram-notify@.service /etc/systemd/system/telegram-notify@.service
 	fi
 elif [ "$REMOTE_URL" != "" ]; then
+	wget -nv -O /usr/local/sbin/telegram-notify "$REMOTE_URL_ORIGINAL/telegram-notify" && \
+	chmod +x /usr/local/sbin/telegram-notify || \
 	wget -nv -O /usr/local/sbin/telegram-notify "$REMOTE_URL/telegram-notify" && \
 	chmod +x /usr/local/sbin/telegram-notify
 	
