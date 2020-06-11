@@ -10,7 +10,7 @@ Additionally can be used as a notification handler for failed systemd services.
 Either clone this repository and execute `sudo bash install.sh` or:
 
 ```bash
-wget -q -O - https://raw.githubusercontent.com/jacklul/telegram-notify/master/install.sh | sudo bash
+wget -O - https://raw.githubusercontent.com/jacklul/telegram-notify/master/install.sh | sudo bash
 ```
 
 ## Systemd service failure handler
