@@ -23,9 +23,9 @@ if [ -f "$SPATH/telegram-notify" ] && [ -f "$SPATH/telegram-notify.conf" ]; then
 		cp -v $SPATH/telegram-notify@.service /etc/systemd/system/telegram-notify@.service
 	fi
 elif [ "$REMOTE_URL" != "" ]; then
-	wget -nv -O /usr/local/sbin/telegram-notify "$REMOTE_URL_ORIGINAL/telegram-notify" && \
+	wget -nv -O /usr/local/bin/telegram-notify "$REMOTE_URL_ORIGINAL/telegram-notify" && \
 	chmod +x /usr/local/sbin/telegram-notify || \
-	wget -nv -O /usr/local/sbin/telegram-notify "$REMOTE_URL/telegram-notify" && \
+	wget -nv -O /usr/local/bin/telegram-notify "$REMOTE_URL/telegram-notify" && \
 	chmod +x /usr/local/sbin/telegram-notify
 	
 	if [ ! -f "/etc/telegram-notify.conf" ]; then
